@@ -1,7 +1,7 @@
-https://youtu.be/9SGDpanrc8U?si=NODntDAi8aAZzZKy&t=1400
+https://youtu.be/9SGDpanrc8U?si=_Ic_Pzz3UVnPHHUS&t=2392
 
-23:20 / 1:37:30
+39:52 / 1:37:30
 
 •
-API Layer
+JPA and @Entity
 
