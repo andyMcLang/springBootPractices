@@ -2,6 +2,7 @@ package com.andylang.demo.student;
 
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,5 +36,27 @@ public class StudentService {
             );
         }
         studentRepository.deleteById(studentId);
+    }
+
+
+    @Transactional
+    public void updateStudent(Long studentId, String name, String email) {
+
+        Student student = studentRepository.findById(studentId)
+                .orElseThrow(() -> new IllegalStateException(
+                        "student with id " + studentId + " not exists"
+                ));
+
+        if (name != null && !name.isEmpty() && !student.getName().equals(name)) {
+            student.setName(name);
+        }
+
+        if (email != null && !email.isEmpty() && !student.getEmail().equals(email)) {
+            Optional<Student> optionalStudent = studentRepository.findStudentByEmail(email);
+            if (optionalStudent.isPresent()) {
+                throw new IllegalStateException("email taken");
+            }
+            student.setEmail(email);
+        }
     }
 }
